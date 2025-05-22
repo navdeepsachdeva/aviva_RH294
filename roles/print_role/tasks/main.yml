@@ -5,10 +5,10 @@
   ansible.builtin.debug:
     msg: "{{ inventory_hostname }}  = {{ aviva_floor }}"
 
-- name: Collect Information
-  ansible.builtin.template:
-    src: simple.j2
-    dest: /tmp/info.txt
-  notify:
-    - Info Collected
+# - name: Collect Information
+#   ansible.builtin.template:
+#     src: simple.j2
+#     dest: /tmp/info.txt
+#   notify:
+#     - Info Collected
 

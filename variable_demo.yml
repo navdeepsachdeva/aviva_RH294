@@ -19,6 +19,53 @@
     - role: print_role
 
   tasks:
-    - name: Some Extra Task
+    - name: Dynamic Inclusion of Variable FIle
+      ansible.builtin.include_vars:
+        file: vars/external_vars.yml
+      when: youme is not defined
+
+    - name: set variable as FACT
+      ansible.builtin.set_fact:
+        aviva_floor: "Level 19 SET FACT vars"
+
+    - name: Outside Block Task 1
       ansible.builtin.debug:
-        msg:  "{{ aviva_floor }} {{ users.bjones.first_name }} {{ users['acook']['last_name'] }} {{ MYSQL_PASSWORD }}"
+        msg: "{{ aviva_floor }}"
+
+    - name: Include a ROLE
+      ansible.builtin.include_role:
+        name: print_role
+      vars:
+        aviva_floor: "Level 20 INCLUDE ROLE vars"
+      when: youme is not defined
+
+    - name: External Tasks
+      ansible.builtin.include_tasks:
+        file: tasks/external_tasks.yml
+      vars:
+        aviva_floor: "Level 21 INCLUDE TASKS vars"
+      when: youme is not defined
+
+
+    - name: Block of Tasks
+      block:
+        - name: Inside Block Task 2
+          ansible.builtin.debug:
+            msg: "{{ aviva_floor }}"
+          vars:
+            aviva_floor: "Level 17 TASK vars"
+
+        - name: Inside Block Task 3
+          ansible.builtin.debug:
+            msg: "{{ aviva_floor }}"
+      when: youme is not defined
+      vars:
+        aviva_floor: "Level 16 Block vars"
+
+    - name: Outside Block Task 4
+      ansible.builtin.debug:
+        msg: "{{ aviva_floor }}"
+
+
+
+        # msg:  "{{ aviva_floor }} {{ users.bjones.first_name }} {{ users['acook']['last_name'] }} {{ MYSQL_PASSWORD }}"
