@@ -1,0 +1,56 @@
+- name: Facts Demo
+  hosts: servera*
+
+  gather_facts: false
+  vars_files:
+    - vars/outside_vars.yml
+
+  tasks:
+    - name: Collect Hardware Facts Manually
+      ansible.builtin.setup:
+        gather_subset:
+          - '!all'
+          - 'min'
+          - 'network'
+          - 'hardware'
+
+    - name: Print Facts
+      ansible.builtin.copy:
+        dest: /tmp/info.txt
+        content: |
+            Architecture  = {{ ansible_facts['architecture'] }}
+            Date          = {{ ansible_facts['date_time']['date'] }}
+            Time          = {{ ansible_facts['date_time']['time'] }}
+            IP Address    = {{ ansible_facts['default_ipv4']['address'] }}
+            OS            = {{ ansible_facts['distribution'] }}
+            FQDN          = {{ ansible_facts['fqdn'] }}
+            Kernel        = {{ ansible_facts['kernel'] }}
+
+    - name: Collect Package Facts
+      ansible.builtin.package_facts:
+
+    - name: Print Package Information
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts.packages.httpd[0].version }}"
+
+    - name: Collect Service Facts
+      ansible.builtin.service_facts:
+
+    - name: Print Service Information
+      ansible.builtin.debug:
+        # msg: "{{ ansible_facts.services.httpd.service.state }}"
+        msg: "{{ ansible_facts['services']['httpd.service']['state'] }}"
+
+    # - name: Install a package
+    #   ansible.builtin.dnf:
+    #     name: httpd
+    #     state: present
+    #   when:
+    #     - ansible_facts['ansible_local']['emp']['dept']['dept_name'] == "security"
+    #     - ansible_facts['memory_mb']['real']['free'] >= 400 or youyou is not defined
+    #     -  user_name not in users_list
+    #   vars:
+    #     user_name: 'navdeep'
+
+    #   # when: ansible_facts['ansible_local']['emp']['dept']['dept_name'] == "security" and  ansible_facts['memory_mb']['real']['free'] <= 400
+    #   become: true

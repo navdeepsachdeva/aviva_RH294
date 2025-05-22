@@ -1,0 +1,28 @@
+## INI Inventory FIle  ##
+
+[all:vars]
+aviva_floor="Level 3 inventory file or script group vars"
+
+[control]
+workstation.lab.example.com
+# CONTROL_NORWICH   ansible_host=workstation.lab.example.com
+
+
+[dev]
+servera.lab.example.com
+serverd.lab.example.com aviva_floor="Level 8 inventory file"
+
+[test]
+serverb.lab.example.com
+#WEB_LONDON ansible_host=serverb.lab.example.com
+
+[prod]
+serverc.lab.example.com
+
+[pre_prod:children]
+dev
+test
+
+# [range]
+# server_[A:F].aviva.com
+# 192.16[7:10].[1:4].[5:8]

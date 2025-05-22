@@ -1,0 +1,20 @@
+---
+# handlers file for web_server
+
+- name: Package Installed
+  ansible.builtin.debug:
+    msg: "Package installed successfully"
+
+- name: Extra
+  ansible.builtin.debug:
+    msg: "Very Extra"
+
+- name: Service Restarted
+  ansible.builtin.debug:
+    msg: "Service DONE"
+
+- name: Restart and Enable Service
+  ansible.builtin.service:
+    name: "{{ web_server_service }}"
+    state: "{{ web_server_service_state }}"
+    enabled: true

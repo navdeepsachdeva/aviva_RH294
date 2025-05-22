@@ -1,0 +1,8 @@
+- name: Magic Variables
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Print Current Hostnames
+      ansible.builtin.debug:
+        msg: "Hello I am {{ inventory_hostname }}"
+      when: inventory_hostname in groups["dev"]

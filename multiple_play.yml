@@ -1,0 +1,56 @@
+- name: Configuration Play
+  hosts: servera.lab.example.com
+  gather_facts: false
+  become: true
+  remote_user: devops
+  tasks:
+    - name: Install Python bypass ansible module subsystem
+      ansible.builtin.raw: dnf install -y python3
+
+    - name: Install web package
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Deploy an App
+      ansible.builtin.copy:
+        content: "Hello Class {{ inventory_hostname }}"
+        dest: /var/www/html/index.html
+        mode: 0644
+
+    - name: Open firewall Port
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: Start and Enable Service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+
+- name: Test Play
+  # hosts: serverb.lab.example.com,serverc*,serverd*
+  hosts:
+    - serverb.lab.example.com
+    - serverc*
+    - serverd*
+  gather_facts: false
+  remote_user: student
+  become: false
+  tasks:
+    - name: Test Web Server A
+      ansible.builtin.uri:
+        url: http://servera.lab.example.com/index.html
+        return_content: true
+      register: captured
+
+    - name: Print the Output of Previous Task
+      ansible.builtin.debug:
+        msg: "{{ captured.content }}"
+      
+
+

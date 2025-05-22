@@ -1,0 +1,43 @@
+aviva_floor: "Level 14 vars_files"
+
+users:
+  bjones:
+    first_name: Bob
+    last_name: Jones
+    home_dir: /users/bjones
+  acook:
+    first_name: Anne
+    last_name: Cook
+    home_dir: /users/acook
+
+users_list:                
+  - ethan             
+  - apoorva           
+  - joel              
+  - ross              
+  - nitin  
+
+nics:
+  - eth_name: eth0
+    eth_desc: "Hello_eth0"
+  - eth_name: eth1
+    eth_desc: "Hello_eth1"
+
+good_hobbies:
+  - name: ethan
+    hobbies: 
+      - tennis
+      - chess
+      - coffee
+  - name: nitin
+    hobbies: 
+      - cricket
+      - chess
+      - tea
+  - name: navdeep
+    hobbies: [] 
+  - name: ross
+    hobbies: 
+      - travel
+      - beer
+      - cricket

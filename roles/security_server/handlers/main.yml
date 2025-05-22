@@ -1,0 +1,15 @@
+---
+# handlers file for security_server
+
+- name: Security Package Installed
+  ansible.builtin.debug:
+    msg: "Installed {{ security_server_package }}"
+
+- name: Security Port Opened
+  ansible.builtin.debug:
+    msg: "Port {{ security_server_port }} Opened"
+
+- name: Security Service Restarted
+  ansible.builtin.service:
+    name: "{{ security_server_service }}"
+    state: restarted

@@ -1,0 +1,19 @@
+---
+# tasks file for security_server
+
+    - name: Install Security package
+      ansible.builtin.dnf:
+        name: "{{ security_server_package }}"
+        state: present
+      notify:
+        - Security Package Installed
+
+    - name: Open firewall Port
+      ansible.posix.firewalld:
+        service: "{{ security_server_port }}"
+        permanent: true
+        state: enabled
+        immediate: true
+      notify:
+        - Security Port Opened
+        - Security Service Restarted

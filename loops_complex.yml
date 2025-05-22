@@ -1,0 +1,36 @@
+- name: Loops Complex Read World
+  hosts: servera.lab.example.com
+  gather_facts: false
+  become: true
+  remote_user: devops
+  tasks:
+    - name: Install web package
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+        # name:
+        #   - vsftpd
+        #   - httpd
+      loop:
+        - httpd
+        - vsftpd
+
+#     - name: Deploy an App
+#       ansible.builtin.copy:
+#         content: "{{ item.file_content }}"
+#         dest: /var/www/html/{{ item['file_name'] }}
+#         mode: 0644
+#       loop:
+#         - file_name: index.html
+#           file_content: "Hello Index on{{ inventory_hostname }}"
+#         - file_name: first.yml
+#           file_content: "Hello First on{{ inventory_hostname }}"
+# 
+#     - name: Start and Enable Service
+#       ansible.builtin.service:
+#         name: "{{ item }}"
+#         state: started
+#         enabled: true
+#       loop:
+#         - httpd
+#         - vsftpd

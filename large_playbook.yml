@@ -1,0 +1,28 @@
+- name: Import another Playbook
+  ansible.builtin.import_playbook: multiple_play.yml
+  
+- name: Integration Playbook
+  hosts: servera* 
+  gather_facts: false
+  tasks:
+    # - name: Import an external Task File
+    #   ansible.builtin.import_tasks:
+    #     file: tasks/oracle_tasks.yml
+    #   when: youme is not defined
+
+    # - name: Include an external Task File
+    #   ansible.builtin.include_tasks:
+    #     file: tasks/ldap_tasks.yml
+    #   when: youme is not defined
+
+    - name: Loop muliple task files
+      # ansible.builtin.import_tasks:
+      ansible.builtin.include_tasks:
+        file: "{{ item }}"
+      loop:
+        - tasks/oracle_tasks.yml
+        - tasks/ldap_tasks.yml
+
+
+- name: Import a external playbook
+  ansible.builtin.import_playbook: multiple_lines.yml

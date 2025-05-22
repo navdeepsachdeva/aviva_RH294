@@ -1,0 +1,6 @@
+---
+# handlers file for print_role
+
+- name: Info Collected
+  ansible.builtin.debug:
+    msg: "I have collected info for {{ inventory_hostname }}"

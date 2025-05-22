@@ -1,0 +1,24 @@
+- name: Variable Demo
+  hosts: dev,test
+
+  gather_facts: false
+  vars:
+    aviva_floor: "Level 12 play vars"
+
+  ## Developer Only 13
+  vars_prompt:
+    - name: aviva_floor
+      prompt: "WHich flloor is yours"
+      private: false
+
+  vars_files:
+    - vars/outside_vars.yml
+
+
+  roles:
+    - role: print_role
+
+  tasks:
+    - name: Some Extra Task
+      ansible.builtin.debug:
+        msg:  "{{ aviva_floor }} {{ users.bjones.first_name }} {{ users['acook']['last_name'] }} {{ MYSQL_PASSWORD }}"

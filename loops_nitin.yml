@@ -1,0 +1,28 @@
+- name: Simple Loops Demo
+  hosts: servera.lab.example.com
+  gather_facts: false
+  vars:
+    me: "cricket"
+  vars_files:
+    - vars/outside_vars.yml
+    
+  tasks:
+    - name: Print very complex loop Content
+      ansible.builtin.debug:
+        msg: "{{ item[0] }} == {{ item[1]}}"
+      when: item[1] == 'cricket'
+      with_subelements:
+        - "{{ good_hobbies }}"
+        - hobbies
+
+    - name: Print very complex loop Content lookup
+      ansible.builtin.debug:
+        msg: "{{ item[0] }} == {{ item[1]}}"
+      when: item[1] == 'cricket'
+      loop: "{{ query('ansible.builtin.subelements', good_hobbies, 'hobbies')}}"
+
+    - name: Another Way
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      when: me in item.hobbies
+      loop: "{{ good_hobbies }}"

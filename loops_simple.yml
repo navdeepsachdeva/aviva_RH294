@@ -1,0 +1,42 @@
+- name: Simple Loops Demo
+  hosts: servera.lab.example.com
+  gather_facts: false
+  # vars:
+  #   users:
+  #     - ethan
+  #     - apoorva
+  #     - joel
+  #     - ross
+  #     - nitin
+    
+  vars_files:
+    - vars/outside_vars.yml
+  tasks:
+    - name: Print simple loop Content
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_list: "{{ users_list }}"
+
+    - name: Print Complex Loop
+      loop: "{{ nics }}"
+      when: item.eth_name == "eth1"
+      ansible.builtin.debug:
+        msg: "{{ item.eth_name }} == {{ item.eth_desc }}"
+      # with_list: "{{ nics }}"
+      #
+    - name: print a sequence
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      with_sequence: start=0 end=5 format=eth%x
+
+    - name: Execute multiple commands
+      ansible.builtin.command: "{{ item }}"
+      loop:
+        - tail -n 2 /etc/passwd
+        - tail -n 2 /etc/group
+      register: myoutput
+
+    - name: Print Output
+      ansible.builtin.debug: 
+        msg: "{{ item.stdout_lines }}"
+      loop: "{{ myoutput.results }}"

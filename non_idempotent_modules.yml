@@ -1,0 +1,14 @@
+- name: DOn't do this
+  hosts: servera.lab.example.com                 
+  gather_facts: false                            
+  become: true                                   
+  remote_user: devops
+  tasks:
+    - name: Install Python bypass ansible module subsystem
+      ansible.builtin.raw: dnf install -y python3
+
+    - name: Command Module
+      ansible.builtin.command: tail -n 2 /etc/shadow
+
+    - name: Shell Module
+      ansible.builtin.shell: tail -n 2 /etc/shadow

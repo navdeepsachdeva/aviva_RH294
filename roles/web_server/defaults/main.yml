@@ -1,0 +1,9 @@
+---
+# defaults file for web_server
+
+web_server_package: httpd
+web_server_content: "Role Defaults Folder Level 2 {{ inventory_hostname }}"
+web_server_file: /var/www/html/index.html
+web_server_service: httpd
+web_server_service_state: restarted
+

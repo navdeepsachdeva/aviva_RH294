@@ -1,0 +1,10 @@
+- name: Template Demo
+  hosts: all
+  gather_facts: true
+  become: false
+  tasks:
+    - name: Collect Information
+      ansible.builtin.template:
+        src: j2/complex.j2
+        dest: /tmp/info.txt
+      when: inventory_hostname in groups["control"]

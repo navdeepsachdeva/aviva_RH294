@@ -1,0 +1,72 @@
+- name: Configuration Play
+  hosts: servera.lab.example.com
+  gather_facts: true
+  become: true
+  remote_user: devops
+  tasks:
+    - name: Outside Block 1
+      ansible.builtin.debug:
+        msg:  "Outside Block 1"
+
+    - name: Setup Web Server Block
+      when: ansible_facts['memory_mb']['real']['free'] >= 400
+      block:
+        - name: Install web package
+          ansible.builtin.dnf:
+            name: httpd
+            state: present
+
+        - name: Deploy an App
+          ansible.builtin.copy:
+            content: "Hello Class {{ inventory_hostname }}"
+            dest: /var/www/html/index.html
+            mode: 0644
+
+        - name: Start and Enable Service
+          ansible.builtin.service:
+            name: httpd
+            state: started
+            enabled: true
+      rescue:
+        - name: May Day May Day
+          ansible.builtin.debug:
+            msg: "Bring machine to last know good config"
+
+        - name: Uninstall web package
+          ansible.builtin.dnf:
+            name: httpd
+            state: absent
+            autoremove: true
+        
+
+      always:
+        - name: Email to Stakeholders
+          ansible.builtin.debug:
+            msg:  "Email Sent"
+
+    - name: Outside Block 2
+      ansible.builtin.debug:
+        msg:  "Outside Block 2"
+
+# - name: Test Play
+#   # hosts: serverb.lab.example.com,serverc*,serverd*
+#   hosts:
+#     - serverb.lab.example.com
+#     - serverc*
+#     - serverd*
+#   gather_facts: false
+#   remote_user: student
+#   become: false
+#   tasks:
+#     - name: Test Web Server A
+#       ansible.builtin.uri:
+#         url: http://servera.lab.example.com/index.html
+#         return_content: true
+#       register: captured
+# 
+#     - name: Print the Output of Previous Task
+#       ansible.builtin.debug:
+#         msg: "{{ captured.content }}"
+#       
+# 
+# 

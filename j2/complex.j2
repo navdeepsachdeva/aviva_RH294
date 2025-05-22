@@ -1,0 +1,55 @@
+{# Just a Comment #}
+
+{% for sys in groups["control"] %}
+
+## Control Node  {{ hostvars[sys].inventory_hostname }} Information ##
+
+Current Host Var= 	{{ sys }}
+Magic Inventory	= 	{{ hostvars[sys].inventory_hostname }}
+Architecture  	= 	{{ hostvars[sys].ansible_architecture }}
+Architecture  	= 	{{ hostvars[sys].ansible_facts.architecture }}
+Architecture  	= 	{{ hostvars[sys].ansible_facts['architecture'] }}
+Date          	= 	{{ hostvars[sys].ansible_facts['date_time']['date'] }}
+Time          	= 	{{ hostvars[sys].ansible_facts['date_time']['time'] }}
+IP Address    	= 	{{ hostvars[sys].ansible_facts['default_ipv4']['address'] }}
+MAC Address   	= 	{{ hostvars[sys].ansible_facts['default_ipv4']['macaddress'] }}
+VDA Size      	= 	{{ hostvars[sys].ansible_facts['devices']['vda']['size'] }}
+OS            	= 	{{ hostvars[sys].ansible_facts['distribution'] }}
+FQDN          	= 	{{ hostvars[sys].ansible_facts['fqdn'] }}
+Hostname      	= 	{{ hostvars[sys].ansible_facts['hostname'] }}
+Kernel        	= 	{{ hostvars[sys].ansible_facts['kernel'] }}
+RAM Free      	= 	{{ hostvars[sys].ansible_facts['memory_mb']['real']['free'] }}
+RAM Total     	= 	{{ hostvars[sys].ansible_facts['memory_mb']['real']['total'] }}
+Python Ver    	= 	{{ hostvars[sys].ansible_facts['python_version'] }}
+User Name     	= 	{{ hostvars[sys].ansible_facts.ansible_local.emp.user.emp_name | default("Not Available") }}
+User Dept     	= 	{{ hostvars[sys].ansible_facts['ansible_local']['emp']['dept']['dept_name'] | default("Not Available") }}
+
+{% endfor %}
+
+{% for sys in groups["all"] %}
+{% if sys not in groups["control"] %}
+
+## Managed Host {{ hostvars[sys].inventory_hostname }} Information ##
+
+Current Host Var= 	{{ sys }}
+Magic Inventory	= 	{{ hostvars[sys].inventory_hostname }}
+Architecture  	= 	{{ hostvars[sys].ansible_architecture }}
+Architecture  	= 	{{ hostvars[sys].ansible_facts.architecture }}
+Architecture  	= 	{{ hostvars[sys].ansible_facts['architecture'] }}
+Date          	= 	{{ hostvars[sys].ansible_facts['date_time']['date'] }}
+Time          	= 	{{ hostvars[sys].ansible_facts['date_time']['time'] }}
+IP Address    	= 	{{ hostvars[sys].ansible_facts['default_ipv4']['address'] }}
+MAC Address   	= 	{{ hostvars[sys].ansible_facts['default_ipv4']['macaddress'] }}
+VDA Size      	= 	{{ hostvars[sys].ansible_facts['devices']['vda']['size'] }}
+OS            	= 	{{ hostvars[sys].ansible_facts['distribution'] }}
+FQDN          	= 	{{ hostvars[sys].ansible_facts['fqdn'] }}
+Hostname      	= 	{{ hostvars[sys].ansible_facts['hostname'] }}
+Kernel        	= 	{{ hostvars[sys].ansible_facts['kernel'] }}
+RAM Free      	= 	{{ hostvars[sys].ansible_facts['memory_mb']['real']['free'] }}
+RAM Total     	= 	{{ hostvars[sys].ansible_facts['memory_mb']['real']['total'] }}
+Python Ver    	= 	{{ hostvars[sys].ansible_facts['python_version'] }}
+User Name     	= 	{{ hostvars[sys].ansible_facts.ansible_local.emp.user.emp_name | default("Not Available") }}
+User Dept     	= 	{{ hostvars[sys].ansible_facts['ansible_local']['emp']['dept']['dept_name'] | default("Not Available") }}
+
+{% endif %}
+{% endfor %}

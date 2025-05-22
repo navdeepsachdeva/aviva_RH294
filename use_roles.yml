@@ -1,0 +1,62 @@
+- name: Role Demo
+  hosts: servera*
+  gather_facts: false
+  # become: true
+  pre_tasks:
+    - name: Collect Facts
+      ansible.builtin.setup:
+
+    - name: Check Pre-Requisites
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['memory_mb']['real']['free'] <= 400
+        fail_msg: "Not ENough Memory"
+        success_msg: "System is good to go"
+    - name: Wait before you start
+      ansible.builtin.command: sleep 2
+      notify:
+        - service_down
+  post_tasks:
+    - name: About to check Services
+      ansible.builtin.command: sleep 2
+      notify:
+        - service_up
+        
+    - name: Test Web Server A
+      ansible.builtin.uri:
+        url: http://servera.lab.example.com/index.html
+        return_content: true
+      register: captured
+ 
+    - name: Print the Output of Previous Task
+      ansible.builtin.debug:
+        msg: "{{ captured.content }}"
+
+
+  tasks:
+    - name: Extra Task
+      ansible.builtin.command: sleep 2
+      notify:
+        - extra_handler
+    - name: Include/Import a Role
+      # ansible.builtin.import_role:
+      ansible.builtin.include_role:
+        name: print_role
+      when: youme is not defined
+
+  handlers:
+    - name: extra_handler
+      ansible.builtin.debug:
+        msg: "Slept a little"
+
+    - name: service_down
+      ansible.builtin.debug:
+        msg: "Insta Service Down, Sleep NOW"
+
+    - name: service_up
+      ansible.builtin.debug:
+        msg: "Insta Services UP, Start wasting time"
+  roles:
+    - role: web_server
+      become: true
+      web_server_content: "FROM PLAY"

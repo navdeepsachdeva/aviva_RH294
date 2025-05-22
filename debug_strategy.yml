@@ -1,0 +1,34 @@
+- name: Debug Strategy
+  hosts: servera.lab.example.com
+  gather_facts: false
+  become: true
+  remote_user: devops
+  strategy: debug
+  tasks:
+    - name: Task 1
+      ansible.builtin.command: sleep 2
+      register: captured
+
+    - name: Install web package 21
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Deploy an App 22
+      ansible.builtin.copy:
+        content: "Changed {{ inventory_hostname }} {{ captured.changed }}"
+        dest: /var/wwwWW/html/index.html
+        mode: 0644
+
+    - name: Open firewall Port 23
+      ansible.posix.firewalld:
+        service: httppp
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: Restart and Enable Service 24
+      ansible.builtin.service:
+        name: httpddddd
+        stateeee: restarted
+        enabled: true

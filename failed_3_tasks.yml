@@ -1,0 +1,48 @@
+- name: Fail Task in 3 ways Play
+  hosts: servera.lab.example.com
+  gather_facts: false
+  become: true
+  remote_user: devops
+  tasks:
+    - name: Install web package
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+      # failed_when: captured.changed == false
+      register: captured
+
+    # - name: Fail task with fail module
+    #   ansible.builtin.fail:
+    #     msg: "Packages did updated "
+    #   when: captured.changed == false
+  
+    - name: Fail task with assert module
+      ansible.builtin.assert:
+        that:
+          - captured.changed
+        fail_msg: "Packages did updated in assert checking"
+        success_msg: "Everything got updated"
+
+    # - name: Print the Output
+    #   ansible.builtin.debug:
+    #     msg: "{{ captured }}"
+      
+
+    - name: Deploy an App
+      ansible.builtin.copy:
+        content: "Hello Class {{ inventory_hostname }}"
+        dest: /var/www/html/index.html
+        mode: 0644
+
+    - name: Open firewall Port
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: true
+
+    - name: Start and Enable Service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true

@@ -1,0 +1,28 @@
+- name: WIthout Handlers Register/Dependecy Task 
+  hosts: servera.lab.example.com
+  gather_facts: false
+  become: true
+  remote_user: devops
+  tasks:
+    - name: Install web package
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+      register: captured
+
+    - name: Print the captured output
+      ansible.builtin.debug:
+        msg: "{{ captured }}"
+
+    # - name: Deploy an App
+    #   ansible.builtin.copy:
+    #     content: "Hello Class {{ inventory_hostname }}"
+    #     dest: /var/www/html/index.html
+    #     mode: 0644
+
+    - name: Restart and Enable Service
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+        enabled: true
+      when: captured.changed == true

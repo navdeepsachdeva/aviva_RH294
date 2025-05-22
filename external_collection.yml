@@ -1,0 +1,36 @@
+- name: External Collection Module and Roles
+  hosts: localhost
+  gather_facts: false
+  remote_user: student
+
+  vars:
+    timesync_ntp_servers:
+      - hostname: foo.example.com
+        iburst: yes
+      - hostname: bar.example.com
+        iburst: yes
+      - hostname: baz.example.com
+        iburst: yes
+
+  roles:
+    - role: redhat.rhel_system_roles.timesync
+
+  #   - role: cisco.catalystwan.health_checks
+  # tasks:
+  #   - name:  git values
+  #     community.general.git_config:
+  #       name: "{{ item.name }}"
+  #       scope: global
+  #       value: "{{ item.value }}"
+  #     delegate_to: workstation.lab.example.com
+  #     loop:
+  #     - name: user.name
+  #       value: 'Student User'
+  #     - name: user.email
+  #       value: student@lab.example.com
+  #     - name: push.default
+  #       value: simple
+  #     - name: credential.helper
+  #       value: cache --timeout=7200
+  #     - name: credential.https://git.lab.example.com.username
+  #       value: student   

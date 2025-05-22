@@ -1,0 +1,29 @@
+- name: Handling Long Text
+  hosts: servera.lab.example.com
+  gather_facts: false
+  tasks:
+    - name: Content of File 1
+      ansible.builtin.copy:
+        dest: /tmp/file1
+        mode: u=rw,g=r,o=r
+        content: "This content is so big and can not fit in one line, so showing one more demo and so that everything can be more manageable"
+      
+    - name: Content of File 2
+      ansible.builtin.copy:
+        dest: /tmp/file2
+        mode: u=rw,g=r,o=r
+        content: >
+              This content is so big and
+              can not fit in one line,
+              so showing one more demo
+              and so that everything can be more manageable
+
+    - name: Content of File 3
+      ansible.builtin.copy:
+        dest: /tmp/file3
+        mode: u=rw,g=r,o=r
+        content: |
+              This content is so big and
+              can not fit in one line,
+              so showing one more demo
+              and so that everything can be more manageable

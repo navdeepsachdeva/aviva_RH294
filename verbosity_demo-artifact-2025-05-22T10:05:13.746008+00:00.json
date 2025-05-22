@@ -1,0 +1,288 @@
+{
+    "plays": [
+        {
+            "__play_name": "Verbosity Demo",
+            "name": "Verbosity Demo",
+            "pattern": "servera.lab.example.com",
+            "play": "Verbosity Demo",
+            "play_pattern": "servera.lab.example.com",
+            "play_uuid": "b64e60ad-4510-a6af-695d-00000000000a",
+            "playbook": "/home/student/aviva/verbosity_demo.yml",
+            "playbook_uuid": "37ec737e-5bf8-40e6-815f-c549bb959d96",
+            "tasks": [
+                {
+                    "__changed": false,
+                    "__duration": "2s",
+                    "__host": "servera.lab.example.com",
+                    "__number": 0,
+                    "__result": "Ok",
+                    "__task": "Install web package",
+                    "__task_action": "ansible.builtin.dnf",
+                    "duration": 1.652333,
+                    "end": "2025-05-22T10:05:13.172740",
+                    "event_loop": null,
+                    "host": "servera.lab.example.com",
+                    "play": "Verbosity Demo",
+                    "play_pattern": "servera.lab.example.com",
+                    "play_uuid": "b64e60ad-4510-a6af-695d-00000000000a",
+                    "playbook": "/home/student/aviva/verbosity_demo.yml",
+                    "playbook_uuid": "37ec737e-5bf8-40e6-815f-c549bb959d96",
+                    "remote_addr": "servera.lab.example.com",
+                    "res": {
+                        "_ansible_no_log": null,
+                        "ansible_facts": {
+                            "discovered_interpreter_python": "/usr/bin/python3"
+                        },
+                        "changed": false,
+                        "invocation": {
+                            "module_args": {
+                                "allow_downgrade": false,
+                                "allowerasing": false,
+                                "autoremove": false,
+                                "bugfix": false,
+                                "cacheonly": false,
+                                "conf_file": null,
+                                "disable_excludes": null,
+                                "disable_gpg_check": false,
+                                "disable_plugin": [],
+                                "disablerepo": [],
+                                "download_dir": null,
+                                "download_only": false,
+                                "enable_plugin": [],
+                                "enablerepo": [],
+                                "exclude": [],
+                                "install_repoquery": true,
+                                "install_weak_deps": true,
+                                "installroot": "/",
+                                "list": null,
+                                "lock_timeout": 30,
+                                "name": [
+                                    "httpd"
+                                ],
+                                "nobest": false,
+                                "releasever": null,
+                                "security": false,
+                                "skip_broken": false,
+                                "sslverify": true,
+                                "state": "present",
+                                "update_cache": false,
+                                "update_only": false,
+                                "validate_certs": true
+                            }
+                        },
+                        "msg": "Nothing to do",
+                        "rc": 0,
+                        "results": []
+                    },
+                    "resolved_action": "ansible.builtin.dnf",
+                    "start": "2025-05-22T10:05:11.520407",
+                    "task": "Install web package",
+                    "task_action": "ansible.builtin.dnf",
+                    "task_args": "",
+                    "task_path": "/home/student/aviva/verbosity_demo.yml:7",
+                    "task_uuid": "b64e60ad-4510-a6af-695d-00000000000c",
+                    "uuid": "d1c47200-e175-485d-b62c-ced6442304bf"
+                },
+                {
+                    "__changed": false,
+                    "__duration": "0s",
+                    "__host": "servera.lab.example.com",
+                    "__number": 1,
+                    "__result": "Skipped",
+                    "__task": "Print the captured output",
+                    "__task_action": "ansible.builtin.debug",
+                    "duration": 0.041246,
+                    "end": "2025-05-22T10:05:13.227171",
+                    "event_loop": null,
+                    "host": "servera.lab.example.com",
+                    "play": "Verbosity Demo",
+                    "play_pattern": "servera.lab.example.com",
+                    "play_uuid": "b64e60ad-4510-a6af-695d-00000000000a",
+                    "playbook": "/home/student/aviva/verbosity_demo.yml",
+                    "playbook_uuid": "37ec737e-5bf8-40e6-815f-c549bb959d96",
+                    "remote_addr": "servera.lab.example.com",
+                    "resolved_action": "ansible.builtin.debug",
+                    "start": "2025-05-22T10:05:13.185925",
+                    "task": "Print the captured output",
+                    "task_action": "ansible.builtin.debug",
+                    "task_args": "",
+                    "task_path": "/home/student/aviva/verbosity_demo.yml:13",
+                    "task_uuid": "b64e60ad-4510-a6af-695d-00000000000d",
+                    "uuid": "b1350125-3266-4296-b551-e14668942ee9"
+                },
+                {
+                    "__changed": false,
+                    "__duration": "0s",
+                    "__host": "servera.lab.example.com",
+                    "__number": 2,
+                    "__result": "Skipped",
+                    "__task": "Restart and Enable Service",
+                    "__task_action": "ansible.builtin.service",
+                    "duration": 0.023745,
+                    "end": "2025-05-22T10:05:13.268663",
+                    "event_loop": null,
+                    "host": "servera.lab.example.com",
+                    "play": "Verbosity Demo",
+                    "play_pattern": "servera.lab.example.com",
+                    "play_uuid": "b64e60ad-4510-a6af-695d-00000000000a",
+                    "playbook": "/home/student/aviva/verbosity_demo.yml",
+                    "playbook_uuid": "37ec737e-5bf8-40e6-815f-c549bb959d96",
+                    "remote_addr": "servera.lab.example.com",
+                    "resolved_action": "ansible.builtin.service",
+                    "start": "2025-05-22T10:05:13.244918",
+                    "task": "Restart and Enable Service",
+                    "task_action": "ansible.builtin.service",
+                    "task_args": "",
+                    "task_path": "/home/student/aviva/verbosity_demo.yml:19",
+                    "task_uuid": "b64e60ad-4510-a6af-695d-00000000000e",
+                    "uuid": "f6dfc79d-da4c-4afc-bab5-2411c35fae9f"
+                }
+            ],
+            "uuid": "b64e60ad-4510-a6af-695d-00000000000a"
+        }
+    ],
+    "settings_entries": {
+        "ansible-navigator": {
+            "ansible": {
+                "config": {
+                    "help": false
+                },
+                "doc": {
+                    "help": false,
+                    "plugin": {
+                        "type": "module"
+                    }
+                },
+                "inventory": {
+                    "entries": [
+                        "/home/student/aviva/aviva_inventory"
+                    ],
+                    "help": false
+                },
+                "playbook": {
+                    "help": false,
+                    "path": "/home/student/aviva/verbosity_demo.yml"
+                }
+            },
+            "ansible-builder": {
+                "help": false,
+                "workdir": "/home/student/aviva"
+            },
+            "app": "run",
+            "collection-doc-cache-path": "/home/student/.cache/ansible-navigator/collection_doc_cache.db",
+            "color": {
+                "enable": true,
+                "osc4": true
+            },
+            "editor": {
+                "command": "vi +{line_number} {filename}",
+                "console": true
+            },
+            "exec": {
+                "command": "/bin/bash",
+                "shell": true
+            },
+            "execution-environment": {
+                "container-engine": "podman",
+                "enabled": true,
+                "image": "utility.lab.example.com/ee-supported-rhel8:latest",
+                "pull": {
+                    "policy": "missing"
+                }
+            },
+            "images": {
+                "details": [
+                    "everything"
+                ]
+            },
+            "logging": {
+                "append": true,
+                "file": "/home/student/aviva/ansible-navigator.log",
+                "level": "warning"
+            },
+            "mode": "stdout",
+            "playbook-artifact": {
+                "enable": true,
+                "save-as": "{playbook_dir}/{playbook_name}-artifact-{time_stamp}.json"
+            },
+            "settings": {
+                "effective": false,
+                "sample": false,
+                "schema": "json",
+                "sources": false
+            },
+            "time-zone": "UTC"
+        }
+    },
+    "settings_sources": {
+        "ansible-navigator.ansible-builder.help": "Defaults",
+        "ansible-navigator.ansible-builder.workdir": "Defaults",
+        "ansible-navigator.ansible-lint.config": "Not set",
+        "ansible-navigator.ansible-lint.lintables": "Not set",
+        "ansible-navigator.ansible-runner.artifact-dir": "Not set",
+        "ansible-navigator.ansible-runner.rotate-artifacts-count": "Not set",
+        "ansible-navigator.ansible-runner.timeout": "Not set",
+        "ansible-navigator.ansible.cmdline": "Not set",
+        "ansible-navigator.ansible.config.help": "Settings file",
+        "ansible-navigator.ansible.config.path": "Not set",
+        "ansible-navigator.ansible.doc.help": "Defaults",
+        "ansible-navigator.ansible.doc.plugin.name": "Not set",
+        "ansible-navigator.ansible.doc.plugin.type": "Defaults",
+        "ansible-navigator.ansible.inventory.entries": "Ansible configuration file",
+        "ansible-navigator.ansible.inventory.help": "Defaults",
+        "ansible-navigator.ansible.playbook.help": "Defaults",
+        "ansible-navigator.ansible.playbook.path": "Command line",
+        "ansible-navigator.app": "Command line",
+        "ansible-navigator.collection-doc-cache-path": "Defaults",
+        "ansible-navigator.color.enable": "Defaults",
+        "ansible-navigator.color.osc4": "Defaults",
+        "ansible-navigator.editor.command": "Defaults",
+        "ansible-navigator.editor.console": "Defaults",
+        "ansible-navigator.exec.command": "Defaults",
+        "ansible-navigator.exec.shell": "Defaults",
+        "ansible-navigator.execution-environment.container-engine": "Settings file",
+        "ansible-navigator.execution-environment.container-options": "Not set",
+        "ansible-navigator.execution-environment.enabled": "Settings file",
+        "ansible-navigator.execution-environment.environment-variables.pass": "Not set",
+        "ansible-navigator.execution-environment.environment-variables.set": "Not set",
+        "ansible-navigator.execution-environment.image": "Settings file",
+        "ansible-navigator.execution-environment.pull.arguments": "Not set",
+        "ansible-navigator.execution-environment.pull.policy": "Settings file",
+        "ansible-navigator.execution-environment.volume-mounts": "Not set",
+        "ansible-navigator.images.details": "Defaults",
+        "ansible-navigator.inventory-columns": "Not set",
+        "ansible-navigator.logging.append": "Settings file",
+        "ansible-navigator.logging.file": "Settings file",
+        "ansible-navigator.logging.level": "Settings file",
+        "ansible-navigator.mode": "Settings file",
+        "ansible-navigator.playbook-artifact.enable": "Command line",
+        "ansible-navigator.playbook-artifact.replay": "Not set",
+        "ansible-navigator.playbook-artifact.save-as": "Settings file",
+        "ansible-navigator.settings.effective": "Defaults",
+        "ansible-navigator.settings.sample": "Defaults",
+        "ansible-navigator.settings.schema": "Defaults",
+        "ansible-navigator.settings.sources": "Defaults",
+        "ansible-navigator.time-zone": "Defaults",
+        "settings_file_path": "/home/student/aviva/ansible-navigator.yml",
+        "settings_file_source": "Search path"
+    },
+    "status": "successful",
+    "status_color": 10,
+    "stdout": [
+        "",
+        "PLAY [Verbosity Demo] **********************************************************",
+        "",
+        "TASK [Install web package] *****************************************************",
+        "\u001b[0;32mok: [servera.lab.example.com]\u001b[0m",
+        "",
+        "TASK [Print the captured output] ***********************************************",
+        "\u001b[0;36mskipping: [servera.lab.example.com]\u001b[0m",
+        "",
+        "TASK [Restart and Enable Service] **********************************************",
+        "\u001b[0;36mskipping: [servera.lab.example.com]\u001b[0m",
+        "",
+        "PLAY RECAP *********************************************************************",
+        "\u001b[0;32mservera.lab.example.com\u001b[0m    : \u001b[0;32mok=1   \u001b[0m changed=0    unreachable=0    failed=0    \u001b[0;36mskipped=2   \u001b[0m rescued=0    ignored=0   "
+    ],
+    "version": "2.0.0"
+}
